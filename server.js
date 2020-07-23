@@ -16,9 +16,9 @@ io.on("connection",(socket)=>{
     io.emit('resetRoom',userList)
     socket.on("joinRoom",(data)=>{
         const {username}=data;
-        const time=moment().format('hh:mm a')
+        const time=moment().format('hh:mm A')
         
-        users.addUser(socket.id,data);
+        users.addUser(socket.id,git );
         io.emit('joinRoom',{
             username:username,
         })
@@ -35,7 +35,7 @@ io.on("connection",(socket)=>{
     })
     socket.on("message",(data)=>{
         const userInfo=users.findUser(socket.id)
-        const time=moment().format('hh:mm a')
+        const time=moment().format('hh:mm A')
         if(userInfo){
             const {username}=userInfo
             io.send({
@@ -50,7 +50,7 @@ io.on("connection",(socket)=>{
         const userInfo=users.findUser(socket.id)
         if(userInfo){
             const {username}=userInfo
-            const time=moment().format('hh:mm a')
+            const time=moment().format('hh:mm A')
             socket.broadcast.send({
                 username,
                 time,
